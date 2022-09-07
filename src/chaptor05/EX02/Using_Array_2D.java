@@ -43,11 +43,12 @@ public class Using_Array_2D {
 			
 		//3. Enhanced for문 사용해서 출력 
 		
-		for (int i[] : arr1 ) {
-			for (int j : i) {
+		for (int k[] : arr1 ) {
+			for (int j : k) {
 		    System.out.print(j + " ");
 			}
 			System.out.println();
+			
 			
 		}
 		
