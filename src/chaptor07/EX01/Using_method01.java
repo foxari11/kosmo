@@ -8,7 +8,7 @@ class B {
 	
 	
 	//2. 리턴 타입 int, 입력 매개변수 없는 메소드
-	int data() { //호출하는 곳에 정수 3을 돌려줌 
+	int lee() { //호출하는 곳에 정수 3을 돌려줌 
 		
 	return 3;    //3은 반드시 정수여야 한다.
 	
@@ -36,12 +36,10 @@ class B {
 	}
 	
 	
-	boolean call () {  //call() 를 호출 시 true를 돌려줌  
-		
-		return true; 
+
 	}
-}
-public class Using_method01 {
+
+public class Using_Method01 {
 
 	public static void main(String[] args) {
 		// 메소드 사용
@@ -49,12 +47,13 @@ public class Using_method01 {
 		//객체 생성 (b)
         B b = new B();
         b.print();
-        System.out.println(b.data());
+        System.out.println(b.lee());
         System.out.println(" == 리턴 double, 입력매개변수  2개 == ");
         System.out.println(b.sum(3, 5.4));
         System.out.println(" == 리턴이 없고 잘못된 입력이 되면 메소드 종료됨");
-        b.printMethod(13);
-        System.out.println(b.call());
+        b.printMethod(12);
+        b.printMethod (1);
+
 	}
 
 }

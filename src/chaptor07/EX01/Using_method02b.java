@@ -1,28 +1,40 @@
 package chaptor07.EX01;
+// 원의 지름을 넣었을 때 전체 넓이를 객체를 생성 후 출력 
+// 피자 반지름 : 10 
+// 도넛 반지름 : 5 
+// <피자>의 넓이는 <00> 입니다.
+// 도넛의 넓이는 00 입니다.
 
-class Circle{
-	int radius;
+class F{
+	int koo;
 	String name;
 	
-	Circle (int radius, String name){
-		this.radius = radius;
+
+	F (int koo, String name){
+		this.koo = koo;
 		this.name= name;
+		
 	}
 	
-	void call () {
-		double area = 3.14 * radius * radius;
+	void lee () {
+		double area = 3.14 * koo * koo;
 		System.out.println(name + "의 넓이는" + area + "입니다. ");
+	}
+	
+	void roo () {
+		
 	}
 }
 
 public class Using_method02b {
 
 	public static void main(String[] args) {
-		Circle pizza = new Circle(10, "피자");
-	    pizza.call();
+		
+		F a = new F(7,"피자");
+	    a.lee();
 	    
-		Circle donut = new Circle(5, "도넛");
-	    donut.call();
+		F 두넛 = new F(5, "도넛");
+	    두넛.lee();
 	    
 
 	}
