@@ -1,4 +1,4 @@
-package chapter06.EX01;
+package chapter06;
 
 public class Using_Class01 {
 

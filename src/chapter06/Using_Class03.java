@@ -1,4 +1,4 @@
-package chapter06.EX01;
+package chapter06;
 
 // 같은 패키지 내에서 클래스 이름은 중복되면 오류 발생됨 . 
 class C{
