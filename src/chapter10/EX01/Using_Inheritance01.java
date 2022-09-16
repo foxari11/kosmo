@@ -1,4 +1,4 @@
-package chapter10;
+package chapter10.EX01;
 
 // 클래스 내부 구성요소 : 1. 필드 , 2. 생성자 , 3. 메소드 , 4. 이너 클래스
 

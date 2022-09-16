@@ -1,4 +1,4 @@
-package chapter10;
+package chapter10.EX01;
 
 class Fruit {  			//과일 <== 부모 클래스 
 	String name;		//과일 이름
