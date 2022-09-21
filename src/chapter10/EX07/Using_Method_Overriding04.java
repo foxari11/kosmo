@@ -1,5 +1,7 @@
 package chapter10.EX07;
 
+import chapter10.EX09.Animal;
+import chapter10.EX09.Tiger;
 
 class Animal {
 	

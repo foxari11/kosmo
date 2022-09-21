@@ -48,7 +48,7 @@ public class Using_while01 {
 		}
 		
 		System.out.println();
-		System.out.println("==========초기값을 whule 문 내에 넣는 경우 : <무한 루프> ============");
+		System.out.println("==========초기값을 while 문 내에 넣는 경우 : <무한 루프> ============");
 		
 	
 		while (a < 10) {
