@@ -1,6 +1,9 @@
 package b_info;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
 
@@ -66,12 +69,44 @@ public class InfoView {
 		pSouth.setLayout(new GridLayout(1,6));
 		pSouth.setPreferredSize(new java.awt.Dimension(50, 40));
 		
+		
 		pSouth.add(bAdd);
 		pSouth.add(bShow);
 		pSouth.add(bSearch);
 		pSouth.add(bDelete);
 		pSouth.add(bCancel);
 		pSouth.add(bExit);
+		
+		bAdd.addActionListener(new ActionListener()  {
+			public void actionPerformed(ActionEvent f) {
+				JOptionPane.showMessageDialog(null, "추가");
+			}
+		});
+		bShow.addActionListener(new ActionListener()  {
+			public void actionPerformed(ActionEvent f) {
+				JOptionPane.showMessageDialog(null, "메렁");
+			}
+		});
+		bSearch.addActionListener(new ActionListener()  {
+			public void actionPerformed(ActionEvent f) {
+				JOptionPane.showMessageDialog(null, "메룽");
+			}
+		});
+		bDelete.addActionListener(new ActionListener()  {
+			public void actionPerformed(ActionEvent f) {
+				JOptionPane.showMessageDialog(null, "메러러러");
+			}
+		});
+		bCancel.addActionListener(new ActionListener()  {
+			public void actionPerformed(ActionEvent f) {
+				JOptionPane.showMessageDialog(null, "메루루루");
+			}
+		});
+		bExit.addActionListener(new ActionListener()  {
+			public void actionPerformed(ActionEvent f) {
+				JOptionPane.showMessageDialog(null, "메릿");
+			}
+		});
 
 
 		
