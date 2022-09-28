@@ -1,11 +1,10 @@
-package b_info2;
+package b_info3;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.ImageIcon;
@@ -25,7 +24,9 @@ public class InfoView {
 	JTextField tfName,tfId,tfTell,tfGender,tfAge,tfHome;
 	JTextArea ta, ta1;
 	JButton bAdd, bShow, bSearch, bDelete, bCancel, bExit;
-
+	
+	ArrayList <PersonVO>list = new ArrayList<PersonVO>();
+	
 
 	// 2. 멤버 변수 객체 생성
 
@@ -53,9 +54,9 @@ public class InfoView {
 		bExit.setMnemonic('x');
 	}
 	/*
-	*
-	*
-	*/
+	 *
+	 *
+	 */
 
 
 	// 3. 화면 구성하고 출력
@@ -105,77 +106,134 @@ public class InfoView {
 
 	}
 
-		public void eventProc() {
-		
+	public void eventProc() {
+
 		tfId.addActionListener(new ActionListener()  {
 			public void actionPerformed(ActionEvent f) {
 				getJuminInfo();
 			}
 		});
+
 		
-		tfId.addFocusListener(new FocusListener(){
-			public void focusGained(FocusEvent e) {
-				
-			}
-			public void focusLost(FocusEvent e) {
-				getJuminInfo();
-			}
-			
-		}); // end of addFocusListener
-		
+
 		bCancel.addActionListener(new ActionListener()  {
 			public void actionPerformed(ActionEvent f) {
 				clearTextField();
 			}
 		});
-		// 'ADD' 버튼이 눌렀을 때 텍스트 필드에 입력한 사용자 값들을 저장 
+
 		bAdd.addActionListener(new ActionListener()  {
 			public void actionPerformed(ActionEvent f) {
 				inputData();
+				clearTextField();
+				selectAll();
 			}
 		});
 		bShow.addActionListener(new ActionListener()  {
 			public void actionPerformed(ActionEvent f) {
-				JOptionPane.showMessageDialog(null, "메렁");
+				selectAll();
 			}
 		});
+		// 그냥 search만 
 		bSearch.addActionListener(new ActionListener()  {
 			public void actionPerformed(ActionEvent f) {
-				JOptionPane.showMessageDialog(null, "메룽");
+				selectByTel();
+			}
+		});
+		// 전화번호 텍스트필드 엔터.
+		tfTell.addActionListener(new ActionListener()  {
+			public void actionPerformed(ActionEvent f) {
+				selectByTel();
 			}
 		});
 		bDelete.addActionListener(new ActionListener()  {
 			public void actionPerformed(ActionEvent f) {
-				JOptionPane.showMessageDialog(null, "메러러러");
-			}
-		});
-		bCancel.addActionListener(new ActionListener()  {
-			public void actionPerformed(ActionEvent f) {
-				JOptionPane.showMessageDialog(null, "메루루루");
+				deletePerson();
+				clearTextField();
+				selectAll();
 			}
 		});
 		bExit.addActionListener(new ActionListener()  {
 			public void actionPerformed(ActionEvent f) {
-				JOptionPane.showMessageDialog(null, "메릿");
+			
 			}
 		});
-		
-		
-		}
+
+
+	}
+
 	public void inputData() {
+		
+		PersonVO so = new PersonVO ();
+		
+		so.setName(tfId.getText());
+		so.setId(tfName.getText());
+		so.setTell(tfTell.getText());
+		so.setGender(tfGender.getText());
+		so.setHome(tfHome.getText());
+		so.setAge(Integer.parseInt(tfAge.getText()));
+
+		list.add(so);
+		
+
+	}
+	
+	public void selectAll() {
+		ta.setText("--목록--\n\n");
+		for(PersonVO so : list) {
+			ta.append(so.toString());
+		}
+		
+	}
+	/* 함수명 : selectByTel
+	 * 인자 	: 없음
+	 * 리턴값 : void
+	 * 역할	: 
+	 */
+	
+	public void selectByTel() {
+		// 입력한 전화번호 값 얻어오기
+		String searchTell = tfTell.getText();
+		// 입력받은 전화 번호 공백이면 전화번호 입력 메세지 출력
+		if(searchTell.equals("")) {
+			JOptionPane.showMessageDialog(null, "전화번호를 입력하세요");
+			return;	//제어권 통제 ㅋㅋ 
+		}
+		//리스트 저장된 PersonVO의 전화번호와 비교하여 
+		// 해당 전화번호가 있으면 그 내용을 각각의 텍스트필드에 출력
+		for(PersonVO so : list) {
+			if (searchTell.equals(so.getTell())) {
+				tfName.setText(so.getName());
+				tfGender.setText(so.getGender());
+				tfHome.setText(so.getHome());
+				tfId.setText(so.getId());
+				tfAge.setText(Integer.toString(so.getAge()));
+			}
+		}
+	}
+	
+	public void deletePerson() {
+		String deleteTell = tfTell.getText();
+		
+		
+		for(PersonVO so : list) {
+			if (deleteTell.equals(so.getTell())) {
+				list.remove(so);
+				break;
+			}
+		}
+		
 		
 		
 	}
+	
 
-		
-	
-	
 	public void getJuminInfo() {
-		
+
 		String jumin = tfId.getText();
 		if(jumin.length() < 14) {
 			JOptionPane.showMessageDialog(null, " - 포함한 15자를 맞춰");
-			
+
 		}else {
 			JOptionPane.showMessageDialog(null, "추가완료");
 		}
@@ -187,22 +245,22 @@ public class InfoView {
 				jumin.charAt(8) =='0') {
 			tfGender.setText("여자");
 		}
-		
+
 		char chool = jumin.charAt(8);
 		switch(chool) {
 		case '0' :
 			tfHome.setText("서울");
-		break;
+			break;
 		case '1':
 			tfHome.setText("안양");
-		break;
+			break;
 		case '2' :
 			tfHome.setText("광주");
-		break;
+			break;
 		case '3' :
 			tfHome.setText("부산");
-		break;
-		
+			break;
+
 		}
 		String nai = jumin.substring(0,2); // 주민 번호 0부터 2미만 까지 잡아줌
 		int sunai = Integer.parseInt(nai); // string을 인트로 
@@ -212,8 +270,8 @@ public class InfoView {
 		String ko = Integer.toString(suna);
 		int sona = year - (1900 + sunai) + 1;
 		String ko1 = Integer.toString(sona);
-		
-		
+
+
 		if(jumin.charAt(8) == '3' || jumin.charAt(8) == '4') {
 			tfAge.setText(ko);
 
@@ -222,21 +280,19 @@ public class InfoView {
 			tfAge.setText(ko1);
 
 		}
-		
+
 	}
-	
+
 	public void clearTextField() {
-	ta.setText(null);
-	tfGender.setText(null);
-	tfHome.setText(null);
-	tfAge.setText(null);
-	tfTell.setText(null);
-	tfId.setText(null);
-	tfName.setText(null);
-	
+		ta.setText(null);
+		tfGender.setText(null);
+		tfHome.setText(null);
+		tfAge.setText(null);
+		tfTell.setText(null);
+		tfId.setText(null);
+		tfName.setText(null);
+
 	}
-
-
 
 	public static void main(String[] args) {
 
